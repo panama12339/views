@@ -3,7 +3,10 @@ import Welcome from '@/Components/Welcome';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function Dashboard() {
+  console.log("Hello World");
+  
   return (
+   
     <AppLayout
       title="Dashboard"
       renderHeader={() => (
