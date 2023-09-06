@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     $rolePaciente = Role::create(['name' => 'paciente']);
     $rolePsicologo = Role::create(['name' => 'psicologo']);
 
-    $permission = Permission::create(['name' => 'edit articles']);
+    //$permission = Permission::create(['name' => 'edit articles']);
 
     \App\Models\User::factory(100)->create();
 
@@ -37,5 +37,25 @@ class DatabaseSeeder extends Seeder
     $user->password = bcrypt('psicologo');
     $user->save();
     $user->assignRole($rolePsicologo);
+
+    $user = new User();
+    $user->name = 'tutor';
+    $user->email = 'tutor@gmail.com';
+    $user->password = bcrypt('tutor');
+    $user->save();
+    $user->assignRole($roleTutor);
+
+    $user = new User();
+    $user->name = 'pacientee';
+    $user->email = 'paciente@gmail.com';
+    $user->password = bcrypt('paciente');
+    $user->save();
+    $user->assignRole($rolePaciente);
+
+    $user = new User();
+    $user->name = 'sinrol';
+    $user->email = 'sinrol@gmail.com';
+    $user->password = bcrypt('sinrol');
+    $user->save();
   }
 }

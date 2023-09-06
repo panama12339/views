@@ -29,11 +29,22 @@ Route::middleware([
   config('jetstream.auth_session'),
   'verified',
 ])->group(function () {
-  Route::get('/dashboard', [DashboardController::class, 'index'])->name(
-    'dashboard'
-  );
+  Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-  Route::get('/admin', function () {
-    return Inertia::render('Admin');
-  })->name('admin');
+  Route::get('/homeAdministrador', function () {
+    return Inertia::render('HomeAdministrador');
+  })->name('homeAdministrador');
+  Route::get('/homePsicologo', function () {
+    return Inertia::render('HomePsicologo');
+  })->name('homePsicologo');
+  Route::get('/homeTutor', function () {
+    return Inertia::render('HomeTutor');
+  })->name('homeTutor');
+  Route::get('/homePaciente', function () {
+    return Inertia::render('HomePaciente');
+  })->name('homePaciente');
+
+  Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+  })->name('dashboard');
 });
