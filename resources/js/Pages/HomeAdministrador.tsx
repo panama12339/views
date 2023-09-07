@@ -1,8 +1,10 @@
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
+import LogoLayout from '@/Layouts/LogoLayout';
 
 export default function HomeAdministrador() {
     return (
+      <LogoLayout>
         <AppLayout
           title="Administrador"
           renderHeader={() => (
@@ -19,6 +21,7 @@ export default function HomeAdministrador() {
             </div>
           </div>
         </AppLayout>
+        </LogoLayout>
       );
     }
     
