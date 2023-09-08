@@ -15,14 +15,11 @@ class DatabaseSeeder extends Seeder
    */
   public function run(): void
   {
+    //Datos iniciales de la base de datos
     $roleAdministrador = Role::create(['name' => 'administrador']);
     $roleTutor = Role::create(['name' => 'tutor']);
     $rolePaciente = Role::create(['name' => 'paciente']);
     $rolePsicologo = Role::create(['name' => 'psicologo']);
-
-    //$permission = Permission::create(['name' => 'edit articles']);
-
-    \App\Models\User::factory(100)->create();
 
     $user = new User();
     $user->name = 'administrador';
@@ -30,6 +27,12 @@ class DatabaseSeeder extends Seeder
     $user->password = bcrypt('administrador');
     $user->save();
     $user->assignRole($roleAdministrador);
+
+    //Todos los datos a continuación son de prueba y deben eliminarse antes de pasar a fase de produccion
+
+    //$permission = Permission::create(['name' => 'edit articles']);
+
+    \App\Models\User::factory(100)->create();
 
     $user = new User();
     $user->name = 'psicologo';
