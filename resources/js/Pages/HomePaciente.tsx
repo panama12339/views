@@ -1,8 +1,10 @@
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
+import LogoLayout from '@/Layouts/LogoLayout';
 
 export default function HomePaciente() {
     return (
+      <LogoLayout>
         <AppLayout
           title="Paciente"
           renderHeader={() => (
@@ -19,6 +21,7 @@ export default function HomePaciente() {
             </div>
           </div>
         </AppLayout>
+        </LogoLayout>
       );
     }
     

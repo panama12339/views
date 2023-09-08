@@ -1,12 +1,14 @@
 import React from 'react';
 import Welcome from '@/Components/Welcome';
 import AppLayout from '@/Layouts/AppLayout';
+import LogoLayout from '@/Layouts/LogoLayout';
 
 export default function Dashboard() {
   console.log("Hello World");
   
   return (
-   
+  
+    <LogoLayout>
     <AppLayout
       title="Dashboard"
       renderHeader={() => (
@@ -23,5 +25,6 @@ export default function Dashboard() {
         </div>
       </div>
     </AppLayout>
+    </LogoLayout>
   );
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
+import LogoLayout from '@/Layouts/LogoLayout';
 
 export default function HomePsicologo() {
     return (
+      <LogoLayout>
         <AppLayout
           title="Psicologo"
           renderHeader={() => (
@@ -20,6 +22,7 @@ export default function HomePsicologo() {
             </div>
           </div>
         </AppLayout>
+        </LogoLayout>
       );
     }
     

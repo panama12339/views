@@ -1,8 +1,9 @@
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
-
+import LogoLayout from '@/Layouts/LogoLayout';
 export default function HomeTutor() {
     return (
+      <LogoLayout>
         <AppLayout
           title="Tutor"
           renderHeader={() => (
@@ -19,6 +20,7 @@ export default function HomeTutor() {
             </div>
           </div>
         </AppLayout>
+        </LogoLayout>
       );
     }
     
