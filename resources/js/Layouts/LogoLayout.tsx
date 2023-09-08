@@ -27,10 +27,10 @@ export default function AppLayout({
             
                 <div className="grid grid-cols-2 gap-20 max-h-24">
                         {/* <!-- Logo Gabinete Sanacion de la Conducta con fondo --> */}
-                        <img className="justify-self-star self-center max-h-24" src='images/logoGabineteSanacionConducta.png'></img>
+                        <img className="justify-self-star self-center max-h-24" src='http://localhost:8000/images/logoGabineteSanacionConducta.png'></img>
                        
                         {/* <!-- Logo Fundacion Educar con fondo --> */}
-                        <img className="justify-self-end self-center max-h-24 bg-customMoradoClaro" src='images/logoFundacionEducar.png'></img> 
+                        <img className="justify-self-end self-center max-h-24 bg-customMoradoClaro" src='http://localhost:8000/images/logoFundacionEducar.png'></img> 
                 </div>
 
         </nav>
