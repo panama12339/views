@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
     $user->assignRole($roleTutor);
 
     $user = new User();
-    $user->name = 'pacientee';
+    $user->name = 'paciente';
     $user->email = 'paciente@gmail.com';
     $user->password = bcrypt('paciente');
     $user->save();

@@ -17,6 +17,10 @@ interface Props {
   renderHeader?(): JSX.Element;
 }
 
+interface userRole{
+  roles: JSON
+}
+
 export default function AppLayout({
   title,
   renderHeader,
@@ -45,15 +49,25 @@ export default function AppLayout({
     router.post(route('logout'));
   }
 
-  //El primer valor es la ruta y el segundo valor es el label
+  //El primer valor es la ruta, el segundo valor es el label, el tercer valor es la ruta formato string y el ultimo valor es el rol que tiene acceso a la ruta
   let rutas = [
-    [route('dashboard'),'Dashboard','dashboard'],
-    [route('administradorUsuarios'),'Usuarios','administradorUsuarios'],
-    [route('homePaciente'),'Home Paciente','homePaciente'],
-    [route('homePsicologo'),'Home Psicólogo','homePsicologo'],
-    [route('homeTutor'),'Home Tutor','homeTutor'],
-    [route('homeAdministrador'),'Home Administrador','homeAdministrador'],
+    [route('dashboard'),'Dashboard','dashboard','sinrol'],
+    [route('homePaciente'),'Home Paciente','homePaciente','paciente'],
+    [route('homePsicologo'),'Home Psicólogo','homePsicologo','psicologo'],
+    [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
+    [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
+    [route('administradorUsuarios'),'Usuarios','administradorUsuarios','administrador'],
   ];
+
+  let auxUser =JSON.stringify(page.props.auth.user)
+  let auxUserConRol =JSON.parse(auxUser)
+  let auxRol = '';
+  if(auxUserConRol.roles[0]){
+    auxRol = (auxUserConRol.roles[0].name)
+  }else{
+    auxRol = 'sinrol'
+  }
+
 
   return (
     <div>
@@ -78,14 +92,16 @@ export default function AppLayout({
                 <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                   
                   {rutas.map((item:any) => (
-                  <NavLink
-                  href={item[0]}
-                  active={route().current(item[2])}
-                  key={item[0]}>
-
-                    {item[1]}
                     
-                  </NavLink>
+                    item[3]===auxRol &&
+
+                    <NavLink
+                    href={item[0]}
+                    active={route().current(item[2])}
+                    key={item[0]}>
+                      {item[1]}
+                    </NavLink>
+                
                   ))}
 
                 </div>
@@ -206,12 +222,19 @@ export default function AppLayout({
             })}
           >
             <div className="pt-2 pb-3 space-y-1">
-              <ResponsiveNavLink
-                href={route('dashboard')}
-                active={route().current('dashboard')}
-              >
-                Dashboard
-              </ResponsiveNavLink>
+             {rutas.map((item:any) => (
+
+                item[3]===auxRol &&
+
+                  <ResponsiveNavLink
+                  href={item[0]}
+                  active={route().current(item[2])}
+                  key={item[0]}>
+
+                    {item[1]}
+                    
+                  </ResponsiveNavLink>
+                  ))}
               
             </div>
 
