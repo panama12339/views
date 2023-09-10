@@ -18,4 +18,11 @@ class ListaUsuariosController extends Controller
     ]);
     //  Log::info('Hi This is from ItSolutionStuff.com!');
   }
+
+  public function update(Request $request, $id)
+  {
+    $user = User::find($id);
+    $user->fill($request->input())->saveOrFail();
+    return redirect('usuarios');
+  }
 }

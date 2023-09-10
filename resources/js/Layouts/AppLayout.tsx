@@ -45,6 +45,16 @@ export default function AppLayout({
     router.post(route('logout'));
   }
 
+  //El primer valor es la ruta y el segundo valor es el label
+  let rutas = [
+    [route('dashboard'),'Dashboard','dashboard'],
+    [route('administradorUsuarios'),'Usuarios','administradorUsuarios'],
+    [route('homePaciente'),'Home Paciente','homePaciente'],
+    [route('homePsicologo'),'Home Psicólogo','homePsicologo'],
+    [route('homeTutor'),'Home Tutor','homeTutor'],
+    [route('homeAdministrador'),'Home Administrador','homeAdministrador'],
+  ];
+
   return (
     <div>
       <Head title={title} />
@@ -66,12 +76,18 @@ export default function AppLayout({
 
                 {/* <!-- Navigation Links --> */}
                 <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  
+                  {rutas.map((item:any) => (
                   <NavLink
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}
-                  >
-                    Dashboard
+                  href={item[0]}
+                  active={route().current(item[2])}
+                  key={item[0]}>
+
+                    {item[1]}
+                    
                   </NavLink>
+                  ))}
+
                 </div>
                 
               </div>
@@ -244,65 +260,6 @@ export default function AppLayout({
                   <ResponsiveNavLink as="button">Log Out</ResponsiveNavLink>
                 </form>
 
-                {/* <!-- Team Management --> */}
-                {page.props.jetstream.hasTeamFeatures ? (
-                  <>
-                    <div className="border-t border-gray-200 dark:border-gray-600"></div>
-
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Manage Team
-                    </div>
-
-                    {/* <!-- Team Settings --> */}
-                    <ResponsiveNavLink
-                      href={route('teams.show', [
-                        page.props.auth.user?.current_team!,
-                      ])}
-                      active={route().current('teams.show')}
-                    >
-                      Team Settings
-                    </ResponsiveNavLink>
-
-                    {page.props.jetstream.canCreateTeams ? (
-                      <ResponsiveNavLink
-                        href={route('teams.create')}
-                        active={route().current('teams.create')}
-                      >
-                        Create New Team
-                      </ResponsiveNavLink>
-                    ) : null}
-
-                    <div className="border-t border-gray-200 dark:border-gray-600"></div>
-
-                    {/* <!-- Team Switcher --> */}
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Switch Teams
-                    </div>
-                    {page.props.auth.user?.all_teams?.map(team => (
-                      <form onSubmit={e => switchToTeam(e, team)} key={team.id}>
-                        <ResponsiveNavLink as="button">
-                          <div className="flex items-center">
-                            {team.id ==
-                              page.props.auth.user?.current_team_id && (
-                              <svg
-                                className="mr-2 h-5 w-5 text-green-400"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                              </svg>
-                            )}
-                            <div>{team.name}</div>
-                          </div>
-                        </ResponsiveNavLink>
-                      </form>
-                    ))}
-                  </>
-                ) : null}
               </div>
             </div>
           </div>

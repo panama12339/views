@@ -38,6 +38,8 @@ Route::middleware([
       ListaUsuariosController::class,
       'index',
     ])->name('administradorUsuarios');
+
+    Route::resource('usuarios', ListaUsuariosController::class);
   });
 
   Route::group(['middleware' => ['role:psicologo']], function () {
