@@ -1,25 +1,19 @@
 import React from 'react';
 import AppLayout from '@/Layouts/AppLayout';
 import LogoLayout from '@/Layouts/LogoLayout';
+import Titulo from '@/Components/Titulo';
 
 export default function HomeAdministrador() {
     return (
       <LogoLayout>
         <AppLayout
           title="Administrador"
-          renderHeader={() => (
-            <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight bg-customVerdeOscuro">
-              Pagina Inicial Administrador
-            </h2>
-          )}
         >
-          <div className="py-12">
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <div>Pagina Inicial Administrador</div>
+          <br/>
+            <div className={` min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900`}>
+              <Titulo>Home Administrador</Titulo>
               </div>
-            </div>
-          </div>
+              <br/>
         </AppLayout>
         </LogoLayout>
       );

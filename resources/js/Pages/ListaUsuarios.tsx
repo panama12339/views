@@ -33,28 +33,29 @@ export default function ListaUsuarios({usuarios}:Props){
         <LogoLayout>
             <AppLayout
           title="ListaUsuarios"
-          renderHeader={() => (
-            <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight bg-customMoradoOscuro">
-              Pagina Lista de Usuarios
-            </h2>
-          )}
         >
-            <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div className={`${visible ? 'visible' : 'collapse'}`}>
+            <br/>
+            <div className={` min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 ${visible ? 'visible' : 'collapse'}`}>
               <Titulo>Lista de Usuarios</Titulo>
+              <br/>
              <TablaUsuarios datos={usuarios} onClickItem={intercambiar}></TablaUsuarios>
              </div>
-             <div className={`${visible ? 'collapse' : 'visible'}`}>
+
+
+             
+             <div className={`min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 ${visible ? 'collapse' : 'visible'}`}>
              <Titulo>Editar usuario</Titulo>
-             <form method="post" onSubmit={intercambiar}>
+             <br />
+             <form method="put" onSubmit={intercambiar}>
       <label>
-        Nombre: <input name="myInput"  defaultValue={user.name} placeholder="nombre"/>
+        Nombre: <input className="mt-4" name="name"  defaultValue={user.name} placeholder="nombre"/>
       </label>
-      <hr />
+      <br />
       <label>
-        Correo: <input name="myInput2" defaultValue={user.email} placeholder="correo"/>
+        Correo: <input className="mt-4" name="email" defaultValue={user.email} placeholder="correo"/>
       </label>
-      <hr />
+      <br />
+      <br />
     {/*  <label>
         Checkbox: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
       </label>
@@ -66,14 +67,16 @@ export default function ListaUsuarios({usuarios}:Props){
         <label><input type="radio" name="myRadio" value="option3" /> Option 3</label>
       </p>
       <hr />
-          */}
       <button type="reset">Reset form</button>
       <button type="submit">Submit form</button>
+          */}
       
-    </form>
+      <PrimaryButton onClick={()=>intercambiar(JSON.parse('{}'))}>Cancelar</PrimaryButton>
     <PrimaryButton onClick={()=>intercambiar(JSON.parse('{}'))}>Editar usuario</PrimaryButton>
+    </form>
+
     </div>
-             </div>
+             
            
             </AppLayout>
         </LogoLayout>

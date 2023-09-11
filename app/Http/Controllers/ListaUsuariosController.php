@@ -22,7 +22,9 @@ class ListaUsuariosController extends Controller
   public function update(Request $request, $id)
   {
     $user = User::find($id);
-    $user->fill($request->input())->saveOrFail();
-    return redirect('usuarios');
+    $input = $request->input();
+    Log::info('Hi This is from ItSolutionStuff.com!');
+    //$user->fill($request->input())->saveOrFail();
+    //return redirect('usuarios');
   }
 }

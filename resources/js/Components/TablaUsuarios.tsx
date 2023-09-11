@@ -9,12 +9,6 @@ interface Props{
 
 export default function TablaUsuarios({datos,onClickItem}:Props){
 
-    //console.log(datos)
-
-    function handleClick() {
-      //alert(item.id);
-    }
-
     return (
         <>
     <table className="table-auto">
