@@ -3,7 +3,7 @@ import PrimaryButton from './PrimaryButton';
 
 interface Props{
     datos:Array<JSON>;
-    onClickItem: (item:JSON) =>void;
+    onClickItem: (item:any) =>void;
 }
 
 
@@ -17,6 +17,7 @@ export default function TablaUsuarios({datos,onClickItem}:Props){
     <tr>
       <th>Nombre</th>
       <th>Correo</th>
+      <th>Editar Usuario</th>
     </tr>
   </thead>
   <tbody>

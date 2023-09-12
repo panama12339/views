@@ -9,22 +9,19 @@ use App\Models\User;
 
 class ListaUsuariosController extends Controller
 {
-  //
   public function index()
   {
     $users = User::all()->except(Auth::id());
     return Inertia::render('ListaUsuarios', [
-      'usuarios' => $users,
+      'users' => $users,
     ]);
-    //  Log::info('Hi This is from ItSolutionStuff.com!');
+    //  Log::info('LOG EXAMPLE');
   }
 
   public function update(Request $request, $id)
   {
     $user = User::find($id);
-    $input = $request->input();
-    Log::info('Hi This is from ItSolutionStuff.com!');
-    //$user->fill($request->input())->saveOrFail();
-    //return redirect('usuarios');
+    $user->fill($request->input())->saveOrFail();
+    return redirect('usuarios');
   }
 }

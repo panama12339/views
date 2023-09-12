@@ -10,15 +10,10 @@ import Dropdown from '@/Components/Dropdown';
 import DropdownLink from '@/Components/DropdownLink';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Team } from '@/types';
 
 interface Props {
   title: string;
   renderHeader?(): JSX.Element;
-}
-
-interface userRole{
-  roles: JSON
 }
 
 export default function AppLayout({
@@ -30,19 +25,6 @@ export default function AppLayout({
   const route = useRoute();
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
-
-  function switchToTeam(e: React.FormEvent, team: Team) {
-    e.preventDefault();
-    router.put(
-      route('current-team.update'),
-      {
-        team_id: team.id,
-      },
-      {
-        preserveState: false,
-      },
-    );
-  }
 
   function logout(e: React.FormEvent) {
     e.preventDefault();
@@ -56,7 +38,7 @@ export default function AppLayout({
     [route('homePsicologo'),'Home Psicólogo','homePsicologo','psicologo'],
     [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
     [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
-    [route('administradorUsuarios'),'Usuarios','administradorUsuarios','administrador'],
+    [route('usuarios.index'),'Usuarios','usuarios.index','administrador'],
   ];
 
   let auxUser =JSON.stringify(page.props.auth.user)
@@ -81,15 +63,9 @@ export default function AppLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex">
-                {/* <!-- Logo --> */}
-                <div className="flex-shrink-0 flex items-center">
-                  <Link href={route('dashboard')}>
-                    <ApplicationMark className="block h-9 w-auto" />
-                  </Link>
-                </div>
 
                 {/* <!-- Navigation Links --> */}
-                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div className="hidden flex-shrink-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                   
                   {rutas.map((item:any) => (
                     

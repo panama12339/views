@@ -34,11 +34,6 @@ Route::middleware([
       return Inertia::render('HomeAdministrador');
     })->name('homeAdministrador');
 
-    Route::get('/administrador/usuarios', [
-      ListaUsuariosController::class,
-      'index',
-    ])->name('administradorUsuarios');
-
     Route::resource('usuarios', ListaUsuariosController::class);
   });
 
