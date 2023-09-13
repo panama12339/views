@@ -38,9 +38,7 @@ Route::middleware([
   });
 
   Route::group(['middleware' => ['role:psicologo']], function () {
-    Route::get('/homePsicologo', function () {
-      return Inertia::render('HomePsicologo');
-    })->name('homePsicologo');
+    Route::resource('calendario', CalendarioController::class);
   });
 
   Route::group(['middleware' => ['role:tutor']], function () {

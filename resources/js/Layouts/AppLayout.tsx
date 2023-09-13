@@ -35,7 +35,7 @@ export default function AppLayout({
   let rutas = [
     [route('dashboard'),'Dashboard','dashboard','sinrol'],
     [route('homePaciente'),'Home Paciente','homePaciente','paciente'],
-    [route('homePsicologo'),'Home Psicólogo','homePsicologo','psicologo'],
+    [route('calendario.index'),'Calendario','calendario.index','psicologo'],
     [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
     [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
     [route('usuarios.index'),'Usuarios','usuarios.index','administrador'],
