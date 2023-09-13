@@ -39,6 +39,7 @@ export default function AppLayout({
     [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
     [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
     [route('usuarios.index'),'Usuarios','usuarios.index','administrador'],
+    [route('asignarPaciente.index'),'Asignar paciente','asignarPaciente.index','tutor'],
   ];
 
   let auxUser =JSON.stringify(page.props.auth.user)

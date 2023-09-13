@@ -47,6 +47,8 @@ Route::middleware([
     Route::get('/homeTutor', function () {
       return Inertia::render('HomeTutor');
     })->name('homeTutor');
+
+    Route::resource('asignarPaciente', AsignarPacienteController::class);
   });
 
   Route::group(['middleware' => ['role:paciente']], function () {
