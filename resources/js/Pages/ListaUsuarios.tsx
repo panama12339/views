@@ -21,6 +21,7 @@ interface User{
 }
 
 export default function ListaUsuarios({users}:Props){
+  console.log(users)
   const route = useRoute();
   const [switchVisibility, setSwitchVisibility] = useState(true);
   const nameInput= useRef(null)
