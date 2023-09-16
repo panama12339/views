@@ -140,7 +140,7 @@ const today = () => {
 
 const diaElegido = (/*annio,mes,dia*/) => {
   //el primer valor es el annio, el segundo es el mes EMPIEZA EN 0 (O ES ENERO Y 11 ES DICIEMBRE), dia
-  calendar.setDate(new Date(2024, 0, 15));
+  calendar.setDate(new Date(2023, 8, 26));
 };
 
 
@@ -156,12 +156,14 @@ const changeDate = (date: Date) => {
   startDate.setFullYear(date.getFullYear())
   startDate.setMonth(date.getMonth())
   startDate.setDate(date.getDate())
-  console.log("cambiado"+startDate)
   setYear(startDate.getFullYear())
   setMonth(startDate.getMonth())
   setDate(startDate.getDate())
-  calendar.setDate(startDate)
-  console.log(calendar.getDate())
+  startDate.setTime(date.getTime())
+  console.log("cambiado"+startDate)
+  let v = (startDate.toLocaleString())
+  calendar.setDate(v)
+ console.log(calendar.getDate())
   //2023-08-30T09:00:00
   //2023-08-30
 };
@@ -178,8 +180,8 @@ const changeDate = (date: Date) => {
               <div className='flex-row'>
               <PrimaryButton onClick={(previousWeek)}>Anterior Semana</PrimaryButton>
               <PrimaryButton onClick={(nextWeek)}>Siguiente Semana</PrimaryButton>
-             {/* <PrimaryButton onClick={(diaElegido)}>Ir a 15 de Enero del 2024</PrimaryButton>
-             <DatePicker selected={startDate} onChange={(date:Date) => changeDate(date)} />*/}
+           {/*  <PrimaryButton onClick={(diaElegido)}>Ir a 26 de Septiembre del 2023</PrimaryButton>
+             <DatePicker selected={startDate} onChange={(date:Date) => changeDate(date)} />*/} 
               <PrimaryButton onClick={(today)}>Hoy</PrimaryButton>
               
               
