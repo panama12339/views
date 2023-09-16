@@ -29,8 +29,8 @@ return new class extends Migration {
     });
 
     //Un psicólogo pueden tener 3 estados (activo, inactivo, ausente temporalmente)
-    Schema::table('psicologos', function (Blueprint $table) {
-      $table->string('id')->primary();
+    Schema::create('psicologos', function (Blueprint $table) {
+      $table->id();
       $table->foreignId('user_id');
       //Un psicólogo pueden tener 3 estados (activo, inactivo, ausente temporalmente)
       $table->string('estado');
@@ -45,29 +45,28 @@ return new class extends Migration {
       $table->binary('foto');
     });
 
-    Schema::table('pacientes', function (Blueprint $table) {
-      $table->string('id')->primary();
+    Schema::create('pacientes', function (Blueprint $table) {
+      $table->id();
       $table->foreignId('user_id')->nullable();
       $table->foreignId('psicologo_id')->nullable();
       $table->timestamps();
+      //Si el paciente esta dado de alta isAlta = true
+      $table->boolean('isAlta');
     });
 
-    Schema::table('tutores', function (Blueprint $table) {
-      $table->string('id')->primary();
+    Schema::create('tutors', function (Blueprint $table) {
+      $table->id();
       $table->timestamps();
     });
 
-    Schema::table('paciente_tutor', function (Blueprint $table) {
-      $table->string('id')->primary();
+    Schema::create('paciente_tutor', function (Blueprint $table) {
+      $table->id();
       $table->foreignId('paciente_id');
-      $table
-        ->foreign('tutor_id')
-        ->references('id')
-        ->on('tutores');
+      $table->foreignId('tutor_id');
       $table->timestamps();
     });
 
-    Schema::create('sesiones', function (Blueprint $table) {
+    Schema::create('sesions', function (Blueprint $table) {
       $table->id();
       //La sesion puede tener uno de estos 3 estados (programada, cancelada y futura)
       $table->string('estado');
@@ -78,18 +77,40 @@ return new class extends Migration {
       $table->foreignId('psicologo_id');
       $table->timestamps();
       $table->string('descripcion_sesion')->nullable();
+      $table->smallInteger('calificacion')->nullable();
+      $table->string('calificacion_descripcion')->nullable();
+    });
+
+    Schema::create('pagos', function (Blueprint $table) {
+      $table->id();
+      $table->string('servicio')->nullable();
+      $table->string('institucion')->nullable();
+      $table->string('convenio')->nullable();
+      $table->foreignId('sesions_id');
+      $table->timestamps();
     });
 
     Schema::create('archivos', function (Blueprint $table) {
       $table->id();
       $table->binary('archivo');
       $table->string('tipo_archivo');
-      $table->foreignId('psicologo_id');
-      $table
-        ->foreign('sesion_id')
-        ->references('id')
-        ->on('sesiones');
+      //psicologo_id si el archivo es la foto del psicologo
+      $table->foreignId('psicologo_id')->nullable();
+      //sesion_id si el archivo se refiere a informacion de sesion
+      $table->foreignId('sesion_id')->nullable();
+      //pago_id si el archivo es el comprobante de pago de la sesion
+      $table->foreignId('pago_id')->nullable();
       $table->timestamps();
+    });
+
+    Schema::create('horarios', function (Blueprint $table) {
+      $table->id();
+      $table->foreignId('psicologo_id');
+      $table->timestamp('fecha_hora_inicio')->nullable();
+      $table->timestamp('fecha_hora_fin')->nullable();
+      $table->timestamps();
+      //isDisponible es true si el horario no tiene una sesion agendada. Es false si se ha agendado una sesion en este horario
+      $table->boolean('isDisponible');
     });
   }
 

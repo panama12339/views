@@ -25,19 +25,44 @@ class DatabaseSeeder extends Seeder
     $user->name = 'administrador';
     $user->email = 'administrador@gmail.com';
     $user->password = bcrypt('administrador');
+    $user->email_verified_at = now();
+    $user->canal_comunicacion = 'correo';
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
+    $user->fecha_nacimiento = '2023-02-02';
+    $user->ocupacion = 'ingeniero';
+    $user->ci = '219301249asd';
+    $user->codigo_pais_telefono = '+591';
+    $user->telefono = '7347272';
+    $user->pregunta_seguridad_a = 'pregunta a';
+    $user->pregunta_seguridad_b = 'pregunta b';
+    $user->respuesta_seguridad_a = 'respuesta a';
+    $user->respuesta_seguridad_b = 'respuesta b';
     $user->save();
     $user->assignRole($roleAdministrador);
-
     //Todos los datos a continuación son de prueba y deben eliminarse antes de pasar a fase de produccion
 
     //$permission = Permission::create(['name' => 'edit articles']);
 
-    \App\Models\User::factory(100)->create();
+    //\App\Models\User::factory(100)->create();
 
     $user = new User();
     $user->name = 'psicologo';
     $user->email = 'psicologo@gmail.com';
     $user->password = bcrypt('psicologo');
+    $user->email_verified_at = now();
+    $user->canal_comunicacion = 'correo';
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
+    $user->fecha_nacimiento = '2023-02-02';
+    $user->ocupacion = 'ingeniero';
+    $user->ci = '219301249asd';
+    $user->codigo_pais_telefono = '+591';
+    $user->telefono = '7347272';
+    $user->pregunta_seguridad_a = 'pregunta a';
+    $user->pregunta_seguridad_b = 'pregunta b';
+    $user->respuesta_seguridad_a = 'respuesta a';
+    $user->respuesta_seguridad_b = 'respuesta b';
     $user->save();
     $user->assignRole($rolePsicologo);
 
@@ -45,6 +70,19 @@ class DatabaseSeeder extends Seeder
     $user->name = 'tutor';
     $user->email = 'tutor@gmail.com';
     $user->password = bcrypt('tutor');
+    $user->email_verified_at = now();
+    $user->canal_comunicacion = 'correo';
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
+    $user->fecha_nacimiento = '2023-02-02';
+    $user->ocupacion = 'ingeniero';
+    $user->ci = '219301249asd';
+    $user->codigo_pais_telefono = '+591';
+    $user->telefono = '7347272';
+    $user->pregunta_seguridad_a = 'pregunta a';
+    $user->pregunta_seguridad_b = 'pregunta b';
+    $user->respuesta_seguridad_a = 'respuesta a';
+    $user->respuesta_seguridad_b = 'respuesta b';
     $user->save();
     $user->assignRole($roleTutor);
 
@@ -52,6 +90,19 @@ class DatabaseSeeder extends Seeder
     $user->name = 'paciente';
     $user->email = 'paciente@gmail.com';
     $user->password = bcrypt('paciente');
+    $user->email_verified_at = now();
+    $user->canal_comunicacion = 'correo';
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
+    $user->fecha_nacimiento = '2023-02-02';
+    $user->ocupacion = 'ingeniero';
+    $user->ci = '219301249asd';
+    $user->codigo_pais_telefono = '+591';
+    $user->telefono = '7347272';
+    $user->pregunta_seguridad_a = 'pregunta a';
+    $user->pregunta_seguridad_b = 'pregunta b';
+    $user->respuesta_seguridad_a = 'respuesta a';
+    $user->respuesta_seguridad_b = 'respuesta b';
     $user->save();
     $user->assignRole($rolePaciente);
 
@@ -59,6 +110,31 @@ class DatabaseSeeder extends Seeder
     $user->name = 'sinrol';
     $user->email = 'sinrol@gmail.com';
     $user->password = bcrypt('sinrol');
+    $user->email_verified_at = now();
+    $user->canal_comunicacion = 'correo';
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
+    $user->fecha_nacimiento = '2023-02-02';
+    $user->ocupacion = 'ingeniero';
+    $user->ci = '219301249asd';
+    $user->codigo_pais_telefono = '+591';
+    $user->telefono = '7347272';
+    $user->pregunta_seguridad_a = 'pregunta a';
+    $user->pregunta_seguridad_b = 'pregunta b';
+    $user->respuesta_seguridad_a = 'respuesta a';
+    $user->respuesta_seguridad_b = 'respuesta b';
     $user->save();
   }
 }
+
+/*$user->contador_bloqueos=0;
+      $user->bloqueo_permanente=false;
+      $user->fecha_nacimiento = '2023-02-02';
+      $user->ocupacion='ingeniero';
+      $user->ci='219301249asd';
+      $user->codigo_pais_telefono='+591';
+      $user->telefono='7347272';
+      $user->pregunta_seguridad_a='pregunta a';
+      $user->pregunta_seguridad_b='pregunta b';
+      $user->respuesta_seguridad_a='respuesta a';
+      $user->respuesta_seguridad_b='respuesta b';*/
