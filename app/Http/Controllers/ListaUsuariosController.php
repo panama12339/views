@@ -21,6 +21,8 @@ class ListaUsuariosController extends Controller
   public function update(Request $request, $id)
   {
     $user = User::find($id);
+    $user->contador_bloqueos = 0;
+    $user->bloqueo_permanente = false;
     $user->fill($request->input())->saveOrFail();
     return redirect('usuarios');
   }
