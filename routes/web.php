@@ -1,8 +1,12 @@
 <?php
+
 namespace App\http\Controllers;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\nuevo;
+use App\Http\Controllers\PacienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +19,7 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/admin', [NuevoController::class, 'index']);
 Route::redirect('/', 'login');
 
 //Solo un usuario autenticado puede ingresar a este grupo de rutas
@@ -52,4 +57,17 @@ Route::middleware([
       return Inertia::render('HomePaciente');
     })->name('homePaciente');
   });
+});
+Route::get('/admin', function () {
+  return view('admin');
+});
+Route::get('/paciente', function () {
+  return view('sesion');
+});
+Route::get('/tutor', function () {
+  return view('tutor');
+});
+
+Route::get('/cambio', function () {
+  return view('cambio');
 });
