@@ -1,0 +1,71 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoneyBill, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+interface LightboxProps {
+  onClose: () => void;
+  esSesionPasada: boolean;
+}
+
+const Lightbox: React.FC<LightboxProps> = ({ onClose , esSesionPasada }) => {
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.8)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 9999,
+    }}>
+      <div style={{
+        width: '500px',
+        height: '500px',
+        background: '#fff',
+        padding: '20px',
+        borderRadius: '8px',
+        textAlign: 'center',
+      }}>
+        <h2>Detalles adicionales</h2>
+        {/* Agrega los detalles adicionales aquí */}
+         {!esSesionPasada && ( // Verifica si la sesión es pasada antes de mostrar los botones
+          <>
+            <button
+              onClick={onClose}
+              style={{
+                padding: '10px 20px',
+                background: '#007bff',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                marginRight: '10px',
+              }}
+            >
+              <FontAwesomeIcon icon={faMoneyBill} style={{ marginRight: '5px' }} />
+              Pagar
+            </button>
+            <button
+              style={{
+                padding: '10px 20px',
+                background: '#dc3545',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              <FontAwesomeIcon icon={faTimesCircle} style={{ marginRight: '5px' }} />
+              Cancelar sesión
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Lightbox;

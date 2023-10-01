@@ -1,68 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { BsList } from 'react-icons/bs';
+import React, { useState } from 'react';
 
-interface LeftMenuContainerProps {
-  menuOpen: boolean;
+interface LeftMenuProps {
+  onSelectOption: (option: string) => void;
 }
 
-const LeftMenuContainer = styled.div<LeftMenuContainerProps>`
+const LeftMenu: React.FC<LeftMenuProps> = ({ onSelectOption }) => {
+  const [selectedOption, setSelectedOption] = useState<string>('');
 
-  width: 240px;
-  height: 500px;
-  background-color: #fff;
-  padding: 10px;
-  position: fixed;
-  top: 60%;
-  left: 0;
-  transform: translateY(-50%);
-  border: 2px solid #ccc;
-  cursor: pointer;
-
-  @media (max-width: 635px) {
-    width: 100%;
-    height: auto;
-    left: ${({ menuOpen }) => (menuOpen ? '0' : '-100%')};
-    transform: none;
-    border: none;
-  }
-`;
-
-const MobileIcon = styled.div`
-  @media (min-width: 769px) {
-    display: none;
-  }
-`;
-
-const LeftMenu: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (!isMobile) {
-      setMenuOpen(false);
-    }
-  }, []);
-
-  const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
+  const handleOptionClick = (option: string) => {
+    setSelectedOption(option);
+    onSelectOption(option);
   };
-  
+
   return (
-    <LeftMenuContainer menuOpen={menuOpen}>
-      <MobileIcon>
-        <BsList onClick={handleMenuClick} style={{ cursor: 'pointer' }} />
-      </MobileIcon>
+    <div style={{
+      width: '200px',
+      height: '500px',
+      backgroundColor: '#ffff',
+      padding: '10px',
+      position: 'absolute',
+      left: '0',
+      bottom: '0',
+      border: '2px solid black',
+      top: '400px'
+    }}>
+      <h2>Menu</h2>
       <ul>
-        <li>Registrar Psicólogo</li>  
+        <li
+          style={{ cursor: 'pointer', marginBottom: '10px', fontWeight: selectedOption === 'Option 1' ? 'bold' : 'normal' }}
+          onClick={() => handleOptionClick('Option 1')}
+        >
+          Opcion 1
+        </li>
+        <li
+          style={{ cursor: 'pointer', marginBottom: '10px', fontWeight: selectedOption === 'Option 2' ? 'bold' : 'normal' }}
+          onClick={() => handleOptionClick('Option 2')}
+        >
+          Opcion
+        </li>
+        <li
+          style={{ cursor: 'pointer', marginBottom: '10px', fontWeight: selectedOption === 'Option 3' ? 'bold' : 'normal' }}
+          onClick={() => handleOptionClick('Option 3')}
+        >
+         Opcion 3
+        </li>
       </ul>
-    </LeftMenuContainer>
+    </div>
   );
 };
 
 export default LeftMenu;
-
-
-
-
-

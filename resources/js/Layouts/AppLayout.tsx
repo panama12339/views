@@ -10,7 +10,6 @@ import Dropdown from '@/Components/Dropdown';
 import DropdownLink from '@/Components/DropdownLink';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Team } from '@/types';
 
 interface Props {
   title: string;
@@ -27,23 +26,31 @@ export default function AppLayout({
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
 
-  function switchToTeam(e: React.FormEvent, team: Team) {
-    e.preventDefault();
-    router.put(
-      route('current-team.update'),
-      {
-        team_id: team.id,
-      },
-      {
-        preserveState: false,
-      },
-    );
-  }
-
   function logout(e: React.FormEvent) {
     e.preventDefault();
     router.post(route('logout'));
   }
+
+  //El primer valor es la ruta, el segundo valor es el label, el tercer valor es la ruta formato string y el ultimo valor es el rol que tiene acceso a la ruta
+  let rutas = [
+    [route('dashboard'),'Dashboard','dashboard','sinrol'],
+    [route('homePaciente'),'Home Paciente','homePaciente','paciente'],
+    [route('calendario.index'),'Calendario','calendario.index','psicologo'],
+    [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
+    [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
+    [route('usuarios.index'),'Usuarios','usuarios.index','administrador'],
+    [route('asignarPaciente.index'),'Asignar paciente','asignarPaciente.index','tutor'],
+  ];
+
+  let auxUser =JSON.stringify(page.props.auth.user)
+  let auxUserConRol =JSON.parse(auxUser)
+  let auxRol = '';
+  if(auxUserConRol.roles[0]){
+    auxRol = (auxUserConRol.roles[0].name)
+  }else{
+    auxRol = 'sinrol'
+  }
+
 
   return (
     <div>
@@ -57,21 +64,23 @@ export default function AppLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex">
-                {/* <!-- Logo --> */}
-                <div className="flex-shrink-0 flex items-center">
-                  <Link href={route('dashboard')}>
-                    <ApplicationMark className="block h-9 w-auto" />
-                  </Link>
-                </div>
 
                 {/* <!-- Navigation Links --> */}
-                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <NavLink
-                    href={route('dashboard')}
-                    active={route().current('dashboard')}
-                  >
-                    Dashboard
-                  </NavLink>
+                <div className="hidden flex-shrink-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  
+                  {rutas.map((item:any) => (
+                    
+                    item[3]===auxRol &&
+
+                    <NavLink
+                    href={item[0]}
+                    active={route().current(item[2])}
+                    key={item[0]}>
+                      {item[1]}
+                    </NavLink>
+                
+                  ))}
+
                 </div>
                 
               </div>
@@ -190,12 +199,19 @@ export default function AppLayout({
             })}
           >
             <div className="pt-2 pb-3 space-y-1">
-              <ResponsiveNavLink
-                href={route('dashboard')}
-                active={route().current('dashboard')}
-              >
-                Dashboard
-              </ResponsiveNavLink>
+             {rutas.map((item:any) => (
+
+                item[3]===auxRol &&
+
+                  <ResponsiveNavLink
+                  href={item[0]}
+                  active={route().current(item[2])}
+                  key={item[0]}>
+
+                    {item[1]}
+                    
+                  </ResponsiveNavLink>
+                  ))}
               
             </div>
 
@@ -244,65 +260,6 @@ export default function AppLayout({
                   <ResponsiveNavLink as="button">Log Out</ResponsiveNavLink>
                 </form>
 
-                {/* <!-- Team Management --> */}
-                {page.props.jetstream.hasTeamFeatures ? (
-                  <>
-                    <div className="border-t border-gray-200 dark:border-gray-600"></div>
-
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Manage Team
-                    </div>
-
-                    {/* <!-- Team Settings --> */}
-                    <ResponsiveNavLink
-                      href={route('teams.show', [
-                        page.props.auth.user?.current_team!,
-                      ])}
-                      active={route().current('teams.show')}
-                    >
-                      Team Settings
-                    </ResponsiveNavLink>
-
-                    {page.props.jetstream.canCreateTeams ? (
-                      <ResponsiveNavLink
-                        href={route('teams.create')}
-                        active={route().current('teams.create')}
-                      >
-                        Create New Team
-                      </ResponsiveNavLink>
-                    ) : null}
-
-                    <div className="border-t border-gray-200 dark:border-gray-600"></div>
-
-                    {/* <!-- Team Switcher --> */}
-                    <div className="block px-4 py-2 text-xs text-gray-400">
-                      Switch Teams
-                    </div>
-                    {page.props.auth.user?.all_teams?.map(team => (
-                      <form onSubmit={e => switchToTeam(e, team)} key={team.id}>
-                        <ResponsiveNavLink as="button">
-                          <div className="flex items-center">
-                            {team.id ==
-                              page.props.auth.user?.current_team_id && (
-                              <svg
-                                className="mr-2 h-5 w-5 text-green-400"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                              </svg>
-                            )}
-                            <div>{team.name}</div>
-                          </div>
-                        </ResponsiveNavLink>
-                      </form>
-                    ))}
-                  </>
-                ) : null}
               </div>
             </div>
           </div>

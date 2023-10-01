@@ -6,9 +6,6 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { RouteContext } from '@/Hooks/useRoute';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import ReactDOM from 'react-dom';
-import LeftMenu from './Components/LeftMenu';
-import Images from './Components/Images';
 
 
 const appName =
@@ -34,5 +31,3 @@ createInertiaApp({
     );
   },
 });
-ReactDOM.render(<LeftMenu />, document.getElementById('left-menu'));
-ReactDOM.render(<Images />, document.getElementById('image'));

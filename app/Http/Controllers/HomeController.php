@@ -13,7 +13,7 @@ class HomeController extends Controller
   {
     $user = Auth::user();
     if ($user->hasRole('psicologo')) {
-      return Inertia::render('HomePsicologo');
+      return redirect('calendario');
     } else {
       if ($user->hasRole('paciente')) {
         return Inertia::render('HomePaciente');
