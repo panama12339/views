@@ -34,12 +34,14 @@ export default function AppLayout({
   //El primer valor es la ruta, el segundo valor es el label, el tercer valor es la ruta formato string y el ultimo valor es el rol que tiene acceso a la ruta
   let rutas = [
     [route('dashboard'),'Dashboard','dashboard','sinrol'],
-    [route('homePaciente'),'Home Paciente','homePaciente','paciente'],
+    [route('homePaciente.index'),'Home Paciente','homePaciente.index','paciente'],
     [route('calendario.index'),'Calendario','calendario.index','psicologo'],
-    [route('homeTutor'),'Home Tutor','homeTutor','tutor'],
+    [route('pacientes.index'),'Pacientes','pacientes.index','psicologo'],
+    [route('homeTutor.index'),'Home Tutor','homeTutor.index','tutor'],
     [route('homeAdministrador'),'Home Administrador','homeAdministrador','administrador'],
     [route('usuarios.index'),'Usuarios','usuarios.index','administrador'],
     [route('asignarPaciente.index'),'Asignar paciente','asignarPaciente.index','tutor'],
+    [route('solicitudTutor.index'),'Solicitudes de Tutores','solicitudTutor.index','tutor'],
   ];
 
   let auxUser =JSON.stringify(page.props.auth.user)

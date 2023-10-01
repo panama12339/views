@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 interface LightboxProps {
   onClose: () => void;
   esSesionPasada: boolean;
+  confir: boolean;
 }
 
-const Lightbox: React.FC<LightboxProps> = ({ onClose , esSesionPasada }) => {
+const Lightbox: React.FC<LightboxProps> = ({ onClose , esSesionPasada,confir }) => {
+  const [descripcion, setDescripcion] = useState('');
+  const handleTextAreaClick = (e: React.MouseEvent<HTMLTextAreaElement, MouseEvent>) => {
+    e.stopPropagation(); // Detiene la propagación del evento
+  };
+
   return (
     <div style={{
       position: 'fixed',
@@ -31,8 +38,20 @@ const Lightbox: React.FC<LightboxProps> = ({ onClose , esSesionPasada }) => {
       }}>
         <h2>Detalles adicionales</h2>
         {/* Agrega los detalles adicionales aquí */}
-         {!esSesionPasada && ( // Verifica si la sesión es pasada antes de mostrar los botones
+        {confir &&(
+          <textarea
+          value={descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
+          onClick={handleTextAreaClick}
+          placeholder="Calificacion..."
+          rows={4}
+          cols={50}
+        />
+        )}
+         {!esSesionPasada && (
+           
           <>
+           
             <button
               onClick={onClose}
               style={{
@@ -61,8 +80,11 @@ const Lightbox: React.FC<LightboxProps> = ({ onClose , esSesionPasada }) => {
               <FontAwesomeIcon icon={faTimesCircle} style={{ marginRight: '5px' }} />
               Cancelar sesión
             </button>
+            
           </>
+          
         )}
+        
       </div>
     </div>
   );

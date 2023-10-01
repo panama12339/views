@@ -7,9 +7,10 @@ interface InfoSesionesProps {
   titulo: string;
   descripcion: string;
   verificacion: boolean;
+  confir: boolean;
 }
 
-const InfoSesiones: React.FC<InfoSesionesProps> = ({ fecha, titulo, descripcion, verificacion }) => {
+const InfoSesiones: React.FC<InfoSesionesProps> = ({ fecha, titulo, descripcion, verificacion,confir }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const onInfoClick = () => {
@@ -67,7 +68,7 @@ const InfoSesiones: React.FC<InfoSesionesProps> = ({ fecha, titulo, descripcion,
         <h2>{titulo}</h2>
         <p>{descripcion}</p>
       </div>
-      {lightboxOpen && <Lightbox onClose={onCloseLightbox} esSesionPasada={verificacion} />}
+      {lightboxOpen && <Lightbox onClose={onCloseLightbox} esSesionPasada={verificacion} confir={confir} />}
     </div>
   );
 };

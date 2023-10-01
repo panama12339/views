@@ -73,6 +73,7 @@ export default function SesionesPaciente() {
               titulo={sesion.titulo}
               descripcion={sesion.descripcion}
               verificacion={true}
+              confir={true}
               
               //onInfoClick={() => {}}
             />
@@ -90,6 +91,7 @@ export default function SesionesPaciente() {
               titulo={sesion.titulo}
               descripcion={sesion.descripcion}
               verificacion={false}
+              confir={false}
               
               //onInfoClick={() => {}}
             />

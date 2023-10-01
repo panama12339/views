@@ -47,20 +47,20 @@ Route::middleware([
 
   Route::group(['middleware' => ['role:psicologo']], function () {
     Route::resource('calendario', CalendarioController::class);
+
+    Route::resource('pacientes', PacientesController::class);
   });
 
   Route::group(['middleware' => ['role:tutor']], function () {
-    Route::get('/homeTutor', function () {
-      return Inertia::render('HomeTutor');
-    })->name('homeTutor');
+    Route::resource('homeTutor', HomeTutorController::class);
 
     Route::resource('asignarPaciente', AsignarPacienteController::class);
+
+    Route::resource('solicitudTutor', SolicitudTutorController::class);
   });
 
   Route::group(['middleware' => ['role:paciente']], function () {
-    Route::get('/homePaciente', function () {
-      return Inertia::render('HomePaciente');
-    })->name('homePaciente');
+    Route::resource('homePaciente', HomePacienteController::class);
   });
 });
 Route::get('/hola', function () {
@@ -90,5 +90,8 @@ Route::get('/num4', function () {
   return Inertia::render('RecuperarPass');
 })->name('RecuperarPass');
 Route::inertia('/Otro', 'Otro');
+Route::get('/num5', function () {
+  return Inertia::render('DisponibilidadTiempo');
+})->name('DisponibilidadTiempo');
 
 //Route::resource('Registro', App\Http\Controllers\PsicologoController::class);

@@ -1,29 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class CalendarioController extends Controller
 {
   public function index()
   {
-    //recuperar sesiones del usuario y mandarlas con el rener
-    //$users = User::all()->except(Auth::id());
-    return Inertia::render('Calendario' /*, [
-      'users' => $users,
-    ]*/);
-    //  Log::info('LOG EXAMPLE');
-  }
+    //recuperar sesiones del psicologo
+    $sesions = DB::table('sesions')
+      ->join('psicologos', 'sesions.psicologo_id', '=', 'psicologos.id')
+      ->join('users', 'psicologos.user_id', '=', 'users.id')
+      ->where('users.id', Auth::id())
+      ->where('sesions.estado', 'programada')
+      ->get();
 
-  //guardo como plantilla pero no pertenece a este controlador
-  /*public function update(Request $request, $id)
-  {
-    $user = User::find($id);
-    $user->fill($request->input())->saveOrFail();
-    return redirect('calendario');
-  }*/
+    //recuperar disponibilidad de horarios del psicologo
+    $horarios = DB::table('horarios')
+      ->where('psicologo_id', $sesions->first()->psicologo_id)
+      ->where('isDisponible', 1)
+      ->get();
+
+    //Log::info('aaaaaaaaaaaaaaaaaaaa');
+    //Log::info($sesions->first()->psicologo_id);
+
+    return Inertia::render('Calendario', [
+      'sesions' => $sesions,
+      'horarios' => $horarios,
+    ]);
+  }
 }

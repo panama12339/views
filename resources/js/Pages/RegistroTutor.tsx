@@ -20,8 +20,8 @@ export default function HomePaciente() {
                     <div style={{flex: '1', marginTop: '10px', marginLeft: '150px'}}>
                             Tipo de <br/>Usuari@<br/>
                             <div style={{flex:'1', marginTop: '-50px',marginLeft: '150px', marginBottom:'70px'}}>
-                                <input type="radio" name="metodo_confirmacion" value="email"style={{marginTop:'3px'}}/>Paciente<br/>
-                                <input type="radio" name="metodo_confirmacion" value="sms" style={{marginTop:'3px'}}/> Tutor<br/>
+                                <input type="radio" name="metodo_confirmacion" value=""style={{marginTop:'3px'}}/>Paciente<br/>
+                                <input type="radio" name="metodo_confirmacion" value="" style={{marginTop:'3px'}}/> Tutor<br/>
                             </div>
 
                          </div>
